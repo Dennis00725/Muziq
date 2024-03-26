@@ -1,20 +1,20 @@
 let allMusic = [
   {
-    name: "another love",
-    artist: "another love",
+    name: "Another Love",
+    artist: "Tom Odell", 
     img: "music-1",
-    src: "music-1",
+    src: "music-1"
   },
   {
     name: "Night Changes",
-    artist: "Artist Name",
+    artist: "One Direction",
     img: "music-2",
-    src: "music-2",
+    src: "music-2"
   },
   {
-    name: "photograph",
-    artist: "photograph",
+    name: "Photograph",
+    artist: "Ed Sheeran", 
     img: "music-3",
-    src: "music-3",
-  },
+    src: "music-3"
+  }
 ];

@@ -3,26 +3,27 @@ const wrapper = document.querySelector(".wrapper"),
   musicName = wrapper.querySelector(".name"),
   musicArtist = wrapper.querySelector(".artist"),
   playPauseBtn = wrapper.querySelector(".play-pause"),
-  prevBtn = wrapper.querySelector("#prev"),
-  nextBtn = wrapper.querySelector("#next"),
-  mainAudio = wrapper.querySelector("#main-audio"),
+  prevBtn = wrapper.querySelector(".prev"),
+  nextBtn = wrapper.querySelector(".next"),
+  mainAudio = wrapper.querySelector(".main-audio"),
   progressArea = wrapper.querySelector(".progress-area"),
-  progressBar = progressArea.querySelector(".progress-bar");
+  progressBar = progressArea.querySelector(".progress-bar"); //making elements a part of UI to interact
 
-let musicIndex = Math.floor((Math.random() * allMusic.length) + 1);
-isMusicPaused = true;
+let musicIndex = Math.floor(Math.random() * allMusic.length + 1); // round down to 1 coz of index0, more humanly manner
+isMusicPaused = true; // music is initially paused
 window.addEventListener("load", () => {
-  loadMusic(musicIndex);
+  //after loading the entire page
+  loadMusic(musicIndex); // starts music track
 });
 function loadMusic(indexNumb) {
-  musicName.innerText = allMusic[indexNumb - 1].name;
+  musicName.innerText = allMusic[indexNumb - 1].name; //retrieves the track name and subtracting the friendliness
   musicArtist.innerText = allMusic[indexNumb - 1].artist;
-  musicImg.src = `assets/images/${allMusic[indexNumb - 1].src}.jpg`;
-  mainAudio.src = `assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
+  musicImg.src = `/assets/images/${allMusic[indexNumb - 1].src}.jpg`;
+  mainAudio.src = `/assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
 }
 function playMusic() {
   wrapper.classList.add("paused");
-  musicImg.classList.add('rotate');
+  musicImg.classList.add("rotate");
   playPauseBtn.innerHTML = `<i class="bx bx-pause"></i>`;
   mainAudio.play();
 }
@@ -34,18 +35,18 @@ function pauseMusic() {
 }
 function prevMusic() {
   musicIndex--;
-  musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex);
+  musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex); // lly to if statement
   loadMusic(musicIndex);
-  playMusic();
+  playMusic(); // to loop back circularly to the last track if in the 1st
 }
 function nextMusic() {
   musicIndex++;
   musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
   loadMusic(musicIndex);
-  playMusic();
+  playMusic(); //vice-versa
 }
 playPauseBtn.addEventListener("click", () => {
-  const isMusicPlay = wrapper.classList.contains("paused");
+  const isMusicPlay = wrapper.classList.contains("paused"); // checks music is playing or paused
   isMusicPlay ? pauseMusic() : playMusic();
 });
 prevBtn.addEventListener("click", () => {
@@ -77,7 +78,7 @@ mainAudio.addEventListener("timeupdate", (e) => {
     currentSec = `0${currentSec}`;
   }
   musicCurrentTime.innerText = `${currentMin}.${currentSec}`;
-});
+}); // updating progress-bar
 
 progressArea.addEventListener("click", (e) => {
   let progressWidth = progressArea.clientWidth;
