@@ -2,7 +2,7 @@ const wrapper = document.querySelector(".wrapper"),
   musicImg = wrapper.querySelector("img"),
   musicName = wrapper.querySelector(".name"),
   musicArtist = wrapper.querySelector(".artist"),
-  playPauseBtn = wrapper.querySelector(".play-pause"),
+  playPauseBtn = wrapper.querySelector(".play-pause-btnC"),
   prevBtn = wrapper.querySelector("#prev"),
   nextBtn = wrapper.querySelector("#next"),
   mainAudio = wrapper.querySelector("#main-audio"),
@@ -46,9 +46,10 @@ function nextMusic() {
   playMusic(); //vice-versa
 }
 playPauseBtn.addEventListener("click", () => {
-  const isMusicPlay = wrapper.classList.contains("paused"); // checks music is playing or paused
-  isMusicPlay ? pauseMusic() : playMusic();
+  const isMusicPaused = wrapper.classList.contains("paused"); // This now correctly indicates the music is paused
+  isMusicPaused ? playMusic() : pauseMusic(); // If music is paused, play it; otherwise, pause it.
 });
+
 prevBtn.addEventListener("click", () => {
   prevMusic();
 });
