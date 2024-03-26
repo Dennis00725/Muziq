@@ -3,13 +3,13 @@ const wrapper = document.querySelector(".wrapper"),
   musicName = wrapper.querySelector(".name"),
   musicArtist = wrapper.querySelector(".artist"),
   playPauseBtn = wrapper.querySelector(".play-pause"),
-  prevBtn = wrapper.querySelector(".prev"),
-  nextBtn = wrapper.querySelector(".next"),
-  mainAudio = wrapper.querySelector(".main-audio"),
+  prevBtn = wrapper.querySelector("#prev"),
+  nextBtn = wrapper.querySelector("#next"),
+  mainAudio = wrapper.querySelector("#main-audio"),
   progressArea = wrapper.querySelector(".progress-area"),
   progressBar = progressArea.querySelector(".progress-bar"); //making elements a part of UI to interact
 
-let musicIndex = Math.floor(Math.random() * allMusic.length + 1); // round down to 1 coz of index0, more humanly manner
+let musicIndex = Math.floor((Math.random() * allMusic.length) + 1); // round down to 1 coz of index0, more humanly manner
 isMusicPaused = true; // music is initially paused
 window.addEventListener("load", () => {
   //after loading the entire page
@@ -35,13 +35,13 @@ function pauseMusic() {
 }
 function prevMusic() {
   musicIndex--;
-  musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex); // lly to if statement
+  musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex; // lly to if statement
   loadMusic(musicIndex);
   playMusic(); // to loop back circularly to the last track if in the 1st
 }
 function nextMusic() {
   musicIndex++;
-  musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
+  musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
   loadMusic(musicIndex);
   playMusic(); //vice-versa
 }
@@ -60,7 +60,8 @@ mainAudio.addEventListener("timeupdate", (e) => {
   const duration = e.target.duration;
   let progressWidth = (currentTime / duration) * 100;
   progressBar.style.width = `${progressWidth}%`;
-  let musicCurrentTime = wrapper.querySelector(".current-time");
+
+  let musicCurrentTime = wrapper.querySelector(".current-time"),
   musicDuration = wrapper.querySelector(".max-duration");
   mainAudio.addEventListener("loadeddata", () => {
     let mainAdDuration = mainAudio.duration;
@@ -82,7 +83,7 @@ mainAudio.addEventListener("timeupdate", (e) => {
 
 progressArea.addEventListener("click", (e) => {
   let progressWidth = progressArea.clientWidth;
-  let clickedOffsetX = e.clickedOffsetX;
+  let clickedOffsetX = e.OffsetX;
   let songDuration = mainAudio.duration;
   mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
   playMusic();
