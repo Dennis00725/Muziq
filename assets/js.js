@@ -9,32 +9,38 @@ const wrapper = document.querySelector(".wrapper"),
   progressArea = wrapper.querySelector(".progress-area"),
   progressBar = progressArea.querySelector(".progress-bar"); //making elements a part of UI to interact
 
-let musicIndex = Math.floor((Math.random() * allMusic.length) + 1); // round down to 1 coz of index0, more humanly manner
+let musicIndex = Math.floor(Math.random() * allMusic.length + 1); // round down to 1 coz of index0, more humanly manner
 isMusicPaused = true; // music is initially paused
 window.addEventListener("load", () => {
   //after loading the entire page
   loadMusic(musicIndex); // starts music track
 });
 function loadMusic(indexNumb) {
-  console.log('loadMusic function called with index:', indexNumb);
-  
+  console.log("loadMusic function called with index:", indexNumb);
+
   musicName.innerText = allMusic[indexNumb - 1].name;
   musicArtist.innerText = allMusic[indexNumb - 1].artist;
+  // Construct image source path with both .jpg and .jpeg extensions
   musicImg.src = `/assets/images/${allMusic[indexNumb - 1].src}.jpg`;
+  let altSrc = `/assets/images/${allMusic[indexNumb - 1].src}.jpeg`;
+  // Check if image with .jpg extension exists, otherwise fallback to .jpeg
+  musicImg.onerror = function () {
+    musicImg.src = altSrc;
+  };
   mainAudio.src = `/assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
 
-  console.log('loadMusic function execution completed');
+  console.log("loadMusic function execution completed");
 }
 
 function playMusic() {
-  console.log('playMusic function called');
-  
+  console.log("playMusic function called");
+
   wrapper.classList.add("paused");
   musicImg.classList.add("rotate");
   playPauseBtn.innerHTML = `<i class="bx bx-pause"></i>`;
   mainAudio.play();
-  
-  console.log('playMusic function execution completed');
+
+  console.log("playMusic function execution completed");
 }
 
 function pauseMusic() {
@@ -45,22 +51,21 @@ function pauseMusic() {
 }
 function prevMusic() {
   musicIndex--;
-  musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex; // lly to if statement
+  musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex); // lly to if statement
   loadMusic(musicIndex);
   playMusic(); // to loop back circularly to the last track if in the 1st
 }
 function nextMusic() {
   musicIndex++;
-  musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
+  musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
   loadMusic(musicIndex);
   playMusic(); //vice-versa
 }
 playPauseBtn.addEventListener("click", () => {
-  console.log('Play-pause button clicked');
+  console.log("Play-pause button clicked");
   const isMusicPlay = wrapper.classList.contains("paused");
   isMusicPlay ? pauseMusic() : playMusic();
 });
-
 
 prevBtn.addEventListener("click", () => {
   prevMusic();
@@ -75,7 +80,7 @@ mainAudio.addEventListener("timeupdate", (e) => {
   progressBar.style.width = `${progressWidth}%`;
 
   let musicCurrentTime = wrapper.querySelector(".current-time"),
-  musicDuration = wrapper.querySelector(".max-duration");
+    musicDuration = wrapper.querySelector(".max-duration");
   mainAudio.addEventListener("loadeddata", () => {
     let mainAdDuration = mainAudio.duration;
     let totalMin = Math.floor(mainAdDuration / 60);
@@ -98,8 +103,12 @@ progressArea.addEventListener("click", (e) => {
   let progressWidth = progressArea.clientWidth;
   let clickedOffsetX = e.offsetX; // Correct case
   let songDuration = mainAudio.duration;
-  
-  if (progressWidth !== 0 && Number.isFinite(clickedOffsetX) && Number.isFinite(songDuration)) {
+
+  if (
+    progressWidth !== 0 &&
+    Number.isFinite(clickedOffsetX) &&
+    Number.isFinite(songDuration)
+  ) {
     mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
     playMusic();
   }

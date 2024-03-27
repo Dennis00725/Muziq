@@ -1,44 +1,134 @@
 let allMusic = [
   {
     name: "Another Love",
-    artist: "Tom Odell", 
+    artist: "Tom Odell",
     img: "music-1",
-    src: "music-1"
+    src: "music-1",
   },
   {
     name: "Night Changes",
     artist: "One Direction",
     img: "music-2",
-    src: "music-2"
+    src: "music-2",
   },
   {
     name: "Photograph",
-    artist: "Ed Sheeran", 
+    artist: "Ed Sheeran",
     img: "music-3",
-    src: "music-3"
+    src: "music-3",
   },
   {
     name: "Attention",
-    artist: "Charlie Puth", 
+    artist: "Charlie Puth",
     img: "music-4",
-    src: "music-4"
+    src: "music-4",
   },
   {
     name: "Past Lives",
-    artist: "sapientdream, Slushii", 
+    artist: "sapientdream, Slushii",
     img: "music-5",
-    src: "music-5"
+    src: "music-5",
   },
   {
     name: "I Hate U, I Love U",
-    artist: "Gnash - ft. Olivia O'Brien", 
+    artist: "Gnash - ft. Olivia O'Brien",
     img: "music-6",
-    src: "music-6"
+    src: "music-6",
   },
-
-
-
-
-
-
+  {
+    name: "Little Do You Know",
+    artist: "Alex & Sierra",
+    img: "music-7",
+    src: "music-7",
+  },
+  {
+    name: "Ghost",
+    artist: "Justin Bieber",
+    img: "music-8",
+    src: "music-8",
+  },
+  {
+    name: "Love Yourself",
+    artist: "Justin Bieber",
+    img: "music-9",
+    src: "music-9",
+  },
+  {
+    name: "It's You",
+    artist: "Ali Gatie",
+    img: "music-10",
+    src: "music-10",
+  },
+  {
+    name: "Alone",
+    artist: "Bazzi",
+    img: "music-11",
+    src: "music-11",
+  },
+  {
+    name: "Apocalypse",
+    artist: "Cigarettes After Sex",
+    img: "music-12",
+    src: "music-12",
+  },
+  {
+    name: "Moral of the Story",
+    artist: "Ashe",
+    img: "music-13",
+    src: "music-13",
+  },
+  {
+    name: "Runaway",
+    artist: "AURORA",
+    img: "music-14",
+    src: "music-14",
+  },
+  {
+    name: "Into Your Arms",
+    artist: "Ava Max",
+    img: "music-15",
+    src: "music-15",
+  },
+  {
+    name: "Princesses Don't Cry",
+    artist: "Aviva",
+    img: "music-16",
+    src: "music-16",
+  },
+  {
+    name: "Mine",
+    artist: "Bazzi",
+    img: "music-17",
+    src: "music-17",
+  },
+  {
+    name: "Beautiful in White",
+    artist: "Shane Filan",
+    img: "music-18",
+    src: "music-18",
+  },
+  {
+    name: "idfc",
+    artist: "blackbear",
+    img: "music-19",
+    src: "music-19",
+  },
+  {
+    name: "All We Know",
+    artist: "Chainsmokers",
+    img: "music-20",
+    src: "music-20",
+  },
+  {
+    name: "We Don't Talk Anymore",
+    artist: "Charlie Puth",
+    img: "music-21",
+    src: "music-21",
+  },
+  {
+    name: "Hold On",
+    artist: "Chord Overstreet",
+    img: "music-22",
+    src: "music-22",
+  },
 ];
