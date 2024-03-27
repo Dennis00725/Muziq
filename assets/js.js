@@ -84,11 +84,15 @@ mainAudio.addEventListener("timeupdate", (e) => {
 
 progressArea.addEventListener("click", (e) => {
   let progressWidth = progressArea.clientWidth;
-  let clickedOffsetX = e.OffsetX;
+  let clickedOffsetX = e.offsetX; // Correct case
   let songDuration = mainAudio.duration;
-  mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
-  playMusic();
+  
+  if (progressWidth !== 0 && Number.isFinite(clickedOffsetX) && Number.isFinite(songDuration)) {
+    mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+    playMusic();
+  }
 });
+
 mainAudio.addEventListener("ended", () => {
   nextMusic();
 });
