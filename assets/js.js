@@ -27,11 +27,16 @@ function loadMusic(indexNumb) {
 }
 
 function playMusic() {
+  console.log('playMusic function called');
+  
   wrapper.classList.add("paused");
   musicImg.classList.add("rotate");
   playPauseBtn.innerHTML = `<i class="bx bx-pause"></i>`;
   mainAudio.play();
+  
+  console.log('playMusic function execution completed');
 }
+
 function pauseMusic() {
   wrapper.classList.remove("paused");
   musicImg.classList.remove("rotate");
@@ -51,9 +56,11 @@ function nextMusic() {
   playMusic(); //vice-versa
 }
 playPauseBtn.addEventListener("click", () => {
-  const isMusicPaused = wrapper.classList.contains("paused"); // This now correctly indicates the music is paused
-  isMusicPaused ? playMusic() : pauseMusic(); // If music is paused, play it; otherwise, pause it.
+  console.log('Play-pause button clicked');
+  const isMusicPlay = wrapper.classList.contains("paused");
+  isMusicPlay ? pauseMusic() : playMusic();
 });
+
 
 prevBtn.addEventListener("click", () => {
   prevMusic();
