@@ -16,11 +16,16 @@ window.addEventListener("load", () => {
   loadMusic(musicIndex); // starts music track
 });
 function loadMusic(indexNumb) {
-  musicName.innerText = allMusic[indexNumb - 1].name; //retrieves the track name and subtracting the friendliness
+  console.log('loadMusic function called with index:', indexNumb);
+  
+  musicName.innerText = allMusic[indexNumb - 1].name;
   musicArtist.innerText = allMusic[indexNumb - 1].artist;
   musicImg.src = `/assets/images/${allMusic[indexNumb - 1].src}.jpg`;
   mainAudio.src = `/assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
+
+  console.log('loadMusic function execution completed');
 }
+
 function playMusic() {
   wrapper.classList.add("paused");
   musicImg.classList.add("rotate");
