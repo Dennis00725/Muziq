@@ -21,13 +21,13 @@ function loadMusic(indexNumb) {
   musicName.innerText = allMusic[indexNumb - 1].name;
   musicArtist.innerText = allMusic[indexNumb - 1].artist;
   // Construct image source path with both .jpg and .jpeg extensions
-  musicImg.src = `/assets/images/${allMusic[indexNumb - 1].src}.jpg`;
-  let altSrc = `/assets/images/${allMusic[indexNumb - 1].src}.jpeg`;
+  musicImg.src = `./images/${allMusic[indexNumb - 1].src}.jpg`;
+  let altSrc = `./images/${allMusic[indexNumb - 1].src}.jpeg`;
   // Check if image with .jpg extension exists, otherwise fallback to .jpeg
   musicImg.onerror = function () {
     musicImg.src = altSrc;
   };
-  mainAudio.src = `/assets/songs/${allMusic[indexNumb - 1].src}.mp3`;
+  mainAudio.src = `./songs/${allMusic[indexNumb - 1].src}.mp3`;
 
   console.log("loadMusic function execution completed");
 }
