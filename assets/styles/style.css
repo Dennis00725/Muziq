@@ -1,0 +1,318 @@
+:root {
+  --bg01: linear-gradient(180deg, #22262a 0%, #181a1d 100%);
+  --bg02: linear-gradient(135deg, #2f3439, #1d1f23);
+  --bg03: linear-gradient(135deg, #2c3136, #1d2023);
+  --bg04: #040404;
+  --border01: #22262a;
+  --border02: #1a1d21;
+  --box-shadow01: 6px 6px 10px #151618, -6px -6px 10px #2c3136,
+    inset 2px 2px 6px #33353b, inset -3px -3px 6px #151618;
+  --box-shadow02: -6px -6px 10px #151618, 6px 6px 10px #2c3136,
+    inset 2px 2px 6px #33353b, inset -3px -3px 6px #151618;
+  --box-shadow03: 6px 6px 12px #151618, -6px -6px 12px #2c3136;
+  --box-shadow04: inset 2px 2px 3px -2px rgba(167, 169, 171, 0.322),
+    inset 0px -1px 1px 0px #4a4c4e;
+  --box-shadow05: 8px 8px 12px #151618, -2px -2px 10px #2c3136,
+    inset 2px 2px 3px #33353b, inset -2px -2px 6px #151618;
+  --box-shadow06: 10px 10px 12px #151618, -10px -10px 12px #222529,
+    inset 4px 4px 8px #33353b, inset -4px -4px 8px #151618;
+  --box-shadow07: 10px 10px 12px #151618, -10px -10px 12px #222529,
+    inset -4px -4px 8px #33353b, inset 4px 4px 8px #151618;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background: var(--bg01);
+  /* Ensure body takes full viewport height */
+  min-height: 100vh;
+  display: flex; /* Use flex to center content if body is taller than wrapper */
+  align-items: center; /* Vertically center the wrapper */
+}
+
+.wrapper {
+  max-width: 900px; /* Keep max-width for larger screens */
+  width: 90%; /* Allow it to shrink to 90% of available width */
+  padding: clamp(1rem, 3vw, 2rem); /* Horizontal padding scales */
+  margin: 0 auto; /* Center horizontally */
+  min-height: calc(100vh - 4rem); /* Let wrapper take most of the height, minus top/bottom margins */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically within the wrapper */
+  overflow: hidden; /* Prevents scrollbars if content is too big */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Optional: subtle shadow for the whole player */
+  border-radius: 10px; /* Optional: rounded corners */
+}
+
+header,
+.song-timer,
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+header .hdbtn {
+  background: var(--bg02);
+  border: 2px solid var(--border01);
+  box-shadow: var(--box-shadow01);
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  color: #86898c;
+  font-size: 22px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.hdbtn:active {
+  box-shadow: var(--box-shadow02);
+}
+
+header h3 {
+  text-transform: uppercase;
+  font-size: clamp(12px, 2.5vw, 14px);
+  color: #86898c;
+}
+
+.player {
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+  flex-grow: 1; /* Allow player to take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: clamp(12rem, 45vw, 18rem);
+  height: clamp(12rem, 45vw, 18rem);
+  margin-bottom: clamp(1rem, 4vw, 2rem);
+  object-fit: cover;
+  border: 10px solid var(--border02);
+  border-radius: 50%;
+  box-shadow: var(--box-shadow03);
+}
+
+.name {
+  color: #a7a9ab;
+  font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+  text-transform: capitalize;
+}
+
+.artist {
+  color: #7c7d80;
+  font-size: clamp(12px, 3vw, 14px);
+  text-transform: capitalize;
+  padding: 10px 0 20px 0;
+}
+
+.audioC {
+  margin: clamp(20px, 4vw, 30px) 0;
+  width: 100%; /* Ensure audio controls take full width */
+}
+
+.song-timer {
+  margin-bottom: 16px;
+}
+
+.song-timer span {
+  font-size: 10px;
+  color: #7c7d80;
+  font-weight: 800;
+}
+
+.progress-area {
+  height: 9px; /* slightly larger for touch */
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 50px;
+  background: var(--bg04);
+  box-shadow: var(--box-shadow04);
+  cursor: pointer;
+}
+
+.progress-area .progress-bar {
+  height: inherit;
+  width: 0%;
+  position: relative;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #bf2311 0%, #e1530a 80%);
+  box-shadow: var(--box-shadow04);
+}
+
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  background: var(--bg02);
+  box-shadow: var(--box-shadow05);
+  border-radius: 50%;
+  top: 50%;
+  right: -14px;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  background: #e15309;
+  border-radius: 50%;
+  top: 50%;
+  right: -5px;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+}
+
+.controls {
+  margin: clamp(30px, 6vw, 55px) 0 5px 0; /* Adjusted margin to take full width */
+  gap: clamp(12px, 4vw, 20px);
+  justify-content: center; /* Center controls horizontally */
+  flex-wrap: wrap; /* Allow controls to wrap on very small heights */
+}
+
+.btnC {
+  width: clamp(56px, 16vw, 70px);
+  height: clamp(56px, 16vw, 70px);
+  border-radius: 50%;
+  border: 3px solid var(--border02);
+  transition: all 0.2s ease;
+  background: var(--bg03);
+  box-shadow: var(--box-shadow06);
+}
+
+.btnC:active {
+  box-shadow: var(--box-shadow07);
+}
+
+.controls i {
+  font-size: clamp(22px, 5vw, 30px);
+  color: #a7a9a7;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls .play-pause-btnC {
+  width: clamp(68px, 18vw, 80px);
+  height: clamp(68px, 18vw, 80px);
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.play-pause-btnC i {
+  font-size: clamp(2.4rem, 6vw, 3rem);
+  text-align: center;
+  color: #fff;
+}
+
+.play-pause-btnC {
+  border: 3px solid #ce4b0e;
+  background: linear-gradient(135deg, #bd2210, #e5550b);
+  box-shadow: 10px 10px 12px #151618, -10px -10px 12px #222529,
+    inset 4px 4px 8px #e5550b, inset -4px -4px 8px #bd2210;
+}
+
+.play-pause-btnC:active {
+  box-shadow: 10px 10px 12px #151618, -10px -10px 12px #222529,
+    inset -10px -10px 8px #e5550b, inset 10px 10px 8px #bd2210;
+}
+
+.rotate {
+  animation: rotation 8s infinite linear;
+  transform-origin: center;
+}
+
+@keyframes rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+/* --- Vertical Responsiveness Adjustments --- */
+/* Adjustments for shorter screens */
+@media (max-height: 700px) {
+  .wrapper {
+    padding: 1rem; /* Reduce padding */
+    min-height: calc(100vh - 2rem); /* Allow more vertical space for content */
+  }
+  .player {
+    margin-top: 1rem; /* Reduce top margin */
+  }
+  .controls {
+    margin-top: 20px; /* Reduce controls margin */
+    gap: 15px; /* Slightly less gap between controls */
+  }
+  .hdbtn {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+    line-height: 46px;
+  }
+  header h3 {
+    font-size: 12px;
+  }
+  img {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+  }
+  .name { font-size: 1.3rem; }
+  .artist { font-size: 12px; }
+  .progress-area { height: 8px; }
+  .progress-bar::before { width: 20px; height: 20px; right: -10px; }
+  .controls .play-pause-btnC { width: 60px; height: 60px; }
+  .play-pause-btnC i { font-size: 2.6rem; }
+}
+
+/* Adjustments for even shorter screens (e.g., very old phones or specific portrait modes) */
+@media (max-height: 500px) {
+  .wrapper {
+    padding: 0.8rem;
+    min-height: calc(100vh - 1.6rem);
+  }
+  .player {
+    margin-top: 0.8rem;
+  }
+  .controls {
+    margin-top: 15px;
+    gap: 10px;
+  }
+  .hdbtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+  }
+  header h3 {
+    font-size: 11px;
+  }
+  img {
+    width: 12rem;
+    height: 12rem;
+    margin-bottom: 0.8rem;
+    border-width: 6px;
+  }
+  .name { font-size: 1.1rem; }
+  .artist { font-size: 11px; padding-bottom: 15px; }
+  .song-timer span { font-size: 9px; }
+  .progress-area { height: 7px; }
+  .progress-bar::before { width: 18px; height: 18px; right: -9px; }
+  .controls .play-pause-btnC { width: 55px; height: 55px; }
+  .play-pause-btnC i { font-size: 2.3rem; }
+}
